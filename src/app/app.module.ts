@@ -11,8 +11,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';  // Ensure FormsModule is imported
-import { RouterModule } from '@angular/router';  // Ensure RouterModule is imported
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // Import ReactiveFormsModule
 
 @NgModule({
   declarations: [
@@ -31,7 +30,7 @@ import { RouterModule } from '@angular/router';  // Ensure RouterModule is impor
     HttpClientModule,
     CommonModule,
     FormsModule,
-    RouterModule  // Ensure RouterModule is included here
+    ReactiveFormsModule  // Include ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

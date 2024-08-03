@@ -1,22 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from '../custom-validators';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
 
-  onSubmit() {
-    // Logic to handle register submission
-    if (this.password !== this.confirmPassword) {
-      console.error('Passwords do not match');
-      return;
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.pattern(/^\S*$/)]],
+      password: ['', [Validators.required, CustomValidators.passwordStrength()]],
+      confirmPassword: ['', Validators.required]
+    }, { validators: CustomValidators.matchPassword });
+  }
+
+  onSubmit(): void {
+    if (this.registerForm.valid) {
+      console.log(this.registerForm.value);
     }
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
   }
 }

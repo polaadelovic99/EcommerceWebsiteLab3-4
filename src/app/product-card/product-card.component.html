@@ -1,0 +1,14 @@
+<div class="card" [routerLink]="['/products', product.id]">
+    <div class="stock-status" [ngClass]="getStockStatusClass()">{{ getStockStatus() }}</div>
+    <img [src]="product.thumbnail" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text"><strong>20 EGP</strong></p>
+        <p class="card-text">{{ product.description }}</p>
+        <p>
+            <span *ngFor="let star of [1, 2, 3, 4, 5]" class="fa fa-star"
+                [ngClass]="{'checked': star <= product.rating}"></span>
+        </p>
+        <button (click)="addToCart(product)" class="btn btn-custom">Add to Cart</button>
+    </div>
+</div>
